@@ -51,12 +51,12 @@
 * R7.2 可以修改内容的全部细节：标题、摘要、图片、正文和价格，点击提交后回到查看界面。
 
 # 项目说明
-## 文件结构
+## P1 文件结构
 war包工程： `emall-manager\emall-manager-web\`
 前端资源： `emall-manager\emall-manager-web\src\main\webapp\`
 逆向工程： `generatorSqlmapCustom\`
 
-## 运行环境
+## P2 运行环境
 数据库：`MySQL`
 JAVA版本：`1.8.0_91`
 Tomcat版本：`7.0.67`
@@ -64,11 +64,11 @@ Maven版本：`3.3.9`
 测试环境：`windows 10 x64`; `Ubuntu 14.04 x64`
 编码格式：`UTF-8`
 
-## 数据库帐号
+## P3 数据库帐号
 数据库用户名：`root`
 数据库密码：`J06GBUrMGdG6d84c`
 
-## 测试地址
+## P4 测试地址
 部署测试：`106.2.110.68:8080` （现已关闭）
 测试用户：
 买家：`buyer` 密码：`reyub`

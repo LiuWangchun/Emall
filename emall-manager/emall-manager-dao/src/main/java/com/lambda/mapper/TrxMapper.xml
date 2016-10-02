@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lambda.mapper.TrxMapper" >
+  <resultMap id="BaseResultMap" type="com.lambda.pojo.Trx" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="contentId" property="contentid" jdbcType="INTEGER" />
+    <result column="personId" property="personid" jdbcType="INTEGER" />
+    <result column="buyPrice" property="buyprice" jdbcType="DECIMAL" />
+    <result column="buyTime" property="buytime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, contentId, personId, buyPrice, buyTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lambda.pojo.TrxExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from trx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from trx
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from trx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lambda.pojo.TrxExample" >
+    delete from trx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lambda.pojo.Trx" >
+    insert into trx (id, contentId, personId, 
+      buyPrice, buyTime)
+    values (#{id,jdbcType=INTEGER}, #{contentid,jdbcType=INTEGER}, #{personid,jdbcType=INTEGER}, 
+      #{buyprice,jdbcType=DECIMAL}, #{buytime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lambda.pojo.Trx" >
+    insert into trx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="contentid != null" >
+        contentId,
+      </if>
+      <if test="personid != null" >
+        personId,
+      </if>
+      <if test="buyprice != null" >
+        buyPrice,
+      </if>
+      <if test="buytime != null" >
+        buyTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="contentid != null" >
+        #{contentid,jdbcType=INTEGER},
+      </if>
+      <if test="personid != null" >
+        #{personid,jdbcType=INTEGER},
+      </if>
+      <if test="buyprice != null" >
+        #{buyprice,jdbcType=DECIMAL},
+      </if>
+      <if test="buytime != null" >
+        #{buytime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lambda.pojo.TrxExample" resultType="java.lang.Integer" >
+    select count(*) from trx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update trx
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.contentid != null" >
+        contentId = #{record.contentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.personid != null" >
+        personId = #{record.personid,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyprice != null" >
+        buyPrice = #{record.buyprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buytime != null" >
+        buyTime = #{record.buytime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update trx
+    set id = #{record.id,jdbcType=INTEGER},
+      contentId = #{record.contentid,jdbcType=INTEGER},
+      personId = #{record.personid,jdbcType=INTEGER},
+      buyPrice = #{record.buyprice,jdbcType=DECIMAL},
+      buyTime = #{record.buytime,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lambda.pojo.Trx" >
+    update trx
+    <set >
+      <if test="contentid != null" >
+        contentId = #{contentid,jdbcType=INTEGER},
+      </if>
+      <if test="personid != null" >
+        personId = #{personid,jdbcType=INTEGER},
+      </if>
+      <if test="buyprice != null" >
+        buyPrice = #{buyprice,jdbcType=DECIMAL},
+      </if>
+      <if test="buytime != null" >
+        buyTime = #{buytime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lambda.pojo.Trx" >
+    update trx
+    set contentId = #{contentid,jdbcType=INTEGER},
+      personId = #{personid,jdbcType=INTEGER},
+      buyPrice = #{buyprice,jdbcType=DECIMAL},
+      buyTime = #{buytime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
